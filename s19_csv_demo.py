@@ -1,25 +1,42 @@
+# You will need to import CSV and OS 
+
+import csv
+import os
+
+
+
 def read_csv(filepath):
     """
     TODO: Read a CSV file and return the data in best format using csv module.
     """
-    with open(filepath, "r", encoding="utf8") as file:
+    with open(filepath, "r", encoding="utf8", newline = "") as file:
+        reader = csv.reader(file)
+        data = list(reader)
         # data = file.read()  # read the file as one big string
         # data = file.readline()  # read the first line
-        data = file.readlines()  # read the entire file and load it by lines into a list
-        return data
+        print(f"Number of rows: {len(data)}")
+        print(f"Type of data: {type(data)}")
+        print("Sample data preview:")
+        print(data[:5]) 
+    return data
 
 
 def process_data(data):
     """Extract useful information from the raw data."""
     for line in data:
         # Process each line
-        print(line.strip().split(","))
+        print(line)
 
 
 def main():
-    file = "data/portfolio.csv"  # https://github.com/OIM3640/resources/blob/main/code/data/portfolio.csv
-    data = read_csv(file)
-    # process_data(data)
+    filepath = "/Users/thomassong0604/Documents/GitHub/OIM3640/CSV Portfolio"  # https://github.com/OIM3640/resources/blob/main/code/data/portfolio.csv
+    if os.path.exists(filepath):
+        data = read_csv(filepath)
+        process_data(data)
+    else:
+        print(f"File not found: {filepath}")
+    
 
 
-main()
+if __name__ == "__main__":
+    main()
