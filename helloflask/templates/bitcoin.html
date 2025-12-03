@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bitcoin Price</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bitcoin.css') }}">
+</head>
+<body>
+
+<div class="card">
+    <h1>🪙 Current Bitcoin Price</h1>
+
+    {% if price != "Error" %}
+        <p class="price">${{ price }}</p>
+        <p class="small">Last Updated: {{ updated }}</p>
+    {% else %}
+        <p class="error">Could not fetch Bitcoin price.</p>
+    {% endif %}
+
+    <a href="/" class="back">⬅ Back Home</a>
+</div>
+
+</body>
+</html>
